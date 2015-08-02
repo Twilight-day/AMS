@@ -1,0 +1,9 @@
+@CHARSET "UTF-8";
+
+div#right {
+	float: right;
+}
+
+.clearRight {
+	clear: right;
+}

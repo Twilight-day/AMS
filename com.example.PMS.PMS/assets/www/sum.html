@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<script type="text/javascript" src="jsWaffle.js"></script>
+<script type="text/javascript" src="conf.js"></script>
+<script type="text/javascript" src="db.js"></script>
+<script type="text/javascript">
+	function showPic() {
+		var savedir = "/sdcard/DCIM/100ANDRO/";
+		var html = "";
+		var list = droid.fileList(savedir);
+		list.sort();
+		for ( var i in list) {
+			var fname = list[i];
+			if (fname.match(/jpg$/)) {
+				html += "<a href=file://" + savedir + fname + "><img id=img  src=file://" + savedir + fname + " width=50 exif=true />";
+				html += " ";
+				//            html += fname;
+			}
+		}
+		$("disp").innerHTML = html;
+	}
+
+	<%--window.onload = showPic;--%>
+</script>
+<script type="text/javascript">
+	window.onload = openDB;
+</script>
+<style type="text/css">
+div#right {
+	float: right;
+}
+
+.clearRight {
+	clear: right;
+}
+</style>
+<title>データベース</title>
+</head>
+<body>
+	<Div id="right">
+		<button onclick="kakunin(3)">戻る</button>
+	</Div>
+	<Font Size="6">一覧</Font>
+	<p class="clearRight">
+		<br> <br> <br>
+	<div id="disp"></div>
+	<div id="db_buttons_div" class="buttons">
+		<button onclick="showDB()">DB開く</button>
+	</div>
+	<div class="disp" id="db_div">&nbsp; ***</div>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html >
+<html>
+<head>
+<meta charset="utf-8">
+<script type="text/javascript" src="jsWaffle.js"></script>
+<script type="text/javascript" src="conf.js"></script>
+<script type="text/javascript" src="db.js"></script>
+<script type="text/style" src="common.css"></script>
+<title>データ登録</title>
+<script type="text/javascript">
+	window.onload = openDB;
+</script>
+<script type="text/javascript">
+	function showPic() {
+		var savedir = "/sdcard/DCIM/100ANDRO/";
+		var html = "";
+		var list = droid.fileList(savedir);
+		list.sort();
+		for ( var i in list) {
+			var fname = list[i];
+			if (fname.match(/jpg$/)) {
+				html += "<a href=file://" + savedir + fname + "><img id=img  src=file://" + savedir + fname + " width=50 exif=true />";
+				html += " ";
+				//            html += fname;
+			}
+		}
+		$("disp").innerHTML = html;
+	}
+
+	<%--window.onload = showPic;--%>
+</script>
+</head>
+<body>
+	<Div id="right">
+		<button onclick="kakunin(3)">戻る</button>
+	</Div>
+
+	<a>店名  :</a>
+	<input type="text" id="tnna">
+	<br />
+	<a>商品名 :</a>
+	<input type="text" id="syna">
+	<br />
+	<a>味   :</a>
+	<input type="text" id="aji">
+	<br />
+	<a>評価  :</a>
+	<input type="text" id="hyk">
+	<br />
+	<a>場所  :</a>
+	<input type="text" id="tiku">
+	<br />
+	<a>コメント:</a>
+	<input type="text" id="cmnt">
+	<br />
+	<a>画像  :</a>
+	<input type="file" id="pict">
+	<br />
+	<div id="db_buttons_div" class="buttons">
+		<button onclick="openDB()">Open DB</button>
+		<button onclick="insertDB()">Insert</button>
+		<button onclick="showDB()">Show</button>
+		<button onclick="clearDB()">Clear</button>
+	</div>
+	<div class="disp" id="db_div">&nbsp; ***</div>
+</body>
+</html>
